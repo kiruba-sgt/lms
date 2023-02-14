@@ -1,5 +1,5 @@
 {% if not course.upcoming %}
-<div class="reviews-parent">
+<div style="display:none" class="reviews-parent">
     {% set reviews = get_reviews(course.name) %}
     <div class="course-home-headings mb-5"> {{ _("Reviews") }} </div>
 

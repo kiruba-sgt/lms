@@ -31,7 +31,7 @@
             <div class="lesson-pagination-parent">
                 {{ LessonContent(lesson) }}
                 {% if not lesson.edit_mode and course.status == "Approved" and not course.upcoming %}
-                {{ Discussions() }}
+                
                 {% endif %}
             </div>
         </div>
@@ -262,23 +262,6 @@
     </div>
 {% endmacro %}
 
-
-<!-- Discussions Component -->
-{% macro Discussions() %}
-    {% set topics_count = frappe.db.count("Discussion Topic", {
-        "reference_doctype": "Course Lesson",
-        "reference_docname": lesson.name
-    }) %}
-    {% set condition = is_instructor(course.name) or membership %}
-    {% set doctype, docname = _("Course Lesson"), lesson.name %}
-    {% set title = "Questions" if topics_count else "" %}
-    {% set cta_title = "Ask a Question" %}
-    {% set button_name = _("Start Learning") %}
-    {% set redirect_to = "/courses/" + course.name %}
-    {% set empty_state_title = _("Have a doubt?") %}
-    {% set empty_state_subtitle = _("Post it here, our mentors will help you out.") %}
-    {% include "frappe/templates/discussions/discussions_section.html" %}
-{% endmacro %}
 
 
 <!-- Scripts -->

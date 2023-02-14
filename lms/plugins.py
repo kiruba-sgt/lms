@@ -15,7 +15,7 @@ be loaded in a webpage.
 """
 
 import frappe
-
+import random
 
 class PageExtension:
 	"""PageExtension is a plugin to inject custom styles and scripts
@@ -102,7 +102,11 @@ def set_mandatory_fields_for_profile():
 
 def quiz_renderer(quiz_name):
 	quiz = frappe.get_doc("LMS Quiz", quiz_name)
+	random.shuffle(quiz.questions)
 
+
+#        questions = random.shuffle(quiz.questions)
+#        quiz.questions = questions
 	context = {"quiz": quiz}
 
 	no_of_attempts = frappe.db.count(

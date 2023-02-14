@@ -1,3 +1,4 @@
+import random
 import frappe
 from frappe.utils import cstr
 
@@ -19,3 +20,4 @@ def get_context(context):
 		context.quiz.questions = frappe.get_all(
 			"LMS Quiz Question", {"parent": quizname}, fields_arr, order_by="idx"
 		)
+                random.shuffle(context.quiz.questions)
